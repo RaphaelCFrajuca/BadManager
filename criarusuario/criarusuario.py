@@ -42,7 +42,7 @@ def criarusuario():
 		return True
 	else:
 		subprocess.call("sudo useradd -M -N -s /bin/false " + usuario, shell=True)
-		subprocess.call("sudo bash criarusuario/pass.sh " + senha + " " + usuario, shell=True)
+		subprocess.call("sudo bash /etc/BadManager/criarusuario/pass.sh " + senha + " " + usuario, shell=True)
 		print(cyan + "Usuario " + usuario + " Criado com sucesso!" + fim)
 		print(cyan + "Dados:\n" + fim)
 		print(cyan + "Usuario: " + usuario + fim)
