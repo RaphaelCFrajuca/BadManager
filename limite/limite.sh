@@ -43,7 +43,7 @@ if [ "$real" -gt "$limite" ]
 then
 echo -e "$vermelho
 Usuario: $usuarioo Sendo Desconectado por bater o limite!$fim"
-proc=$(ps x | grep ssh | grep -v grep | grep -v pts | grep $usuarioo | awk '{print $1}'
+proc=$(ps x | grep ssh | grep -v grep | grep -v pts | grep $usuarioo | awk '{print $1}')
 kill -9 $proc
 fi
 done < /etc/limite/limite.txt
