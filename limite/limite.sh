@@ -34,6 +34,8 @@ echo -e "$menu
 			Limite de Usuarios			$fim"
 while read usuario
 do
+if [ "$usuario" ]
+then
 limite=$(echo $usuario | awk '{print $2}')
 usuarioo=$(echo $usuario | awk '{print $1}')
 real=$(sudo ps x | grep ssh | grep -v grep | grep -v pts | grep $usuarioo | wc -l)
@@ -45,6 +47,7 @@ echo -e "$vermelho
 Usuario: $usuarioo Sendo Desconectado por bater o limite!$fim"
 proc=$(ps x | grep ssh | grep -v grep | grep -v pts | grep $usuarioo | awk '{print $1}')
 kill -9 $proc
+fi
 fi
 done < /etc/limite/limite.txt
 sleep 1
