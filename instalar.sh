@@ -30,9 +30,15 @@ Instalando requisitos...$fim"
 
 if [ "$1" = "--output" ]
 then
-sudo apt-get install python3 curl wget bc sudo bash git -y 
+sudo apt-get install python3 curl wget bc sudo bash git locales -y 
+sudo echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen
+sudo locale-gen
+sudo export LANG=pt_BR.UTF-8
 else
-sudo apt-get install python3 curl wget bc sudo bash git -y 1>/dev/null 2>/dev/null
+sudo apt-get install python3 curl wget bc sudo bash git locales -y 1>/dev/null 2>/dev/null
+sudo echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen
+sudo locale-gen
+sudo export LANG=pt_BR.UTF-8
 fi
 
 echo -e "$cyanClaro
