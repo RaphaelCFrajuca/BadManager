@@ -27,5 +27,5 @@ def remlimite():
 	subprocess.call("sudo bash /etc/BadManager/limite/remlimite.sh", shell=True)
 
 def gerlimite():
-	subprocess.call("sudo bash /etc/BadManager/limite/limite.sh", shell=True)
+	subprocess.call("sudo screen /etc/BadManager/limite/limite.sh", shell=True)
 
