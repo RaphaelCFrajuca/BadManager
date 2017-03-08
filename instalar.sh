@@ -54,6 +54,7 @@ echo -e "$cyanClaro
 Instalando BadManager...$fim"
 mv /etc/BadManager/iniciar.py /bin/iniciar
 chmod a+x /bin/iniciar
+chmod a+x /etc/BadManager/*
 
 echo -e "$verde Instalação Completa! $fim"
 echo -e "Para executar o BadManager digite $amarelo iniciar$fim em seu Terminal."
