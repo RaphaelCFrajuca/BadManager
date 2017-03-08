@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.0"
+versao="1.0.1"
 try:
 	import os
 	import platform
@@ -35,7 +35,7 @@ except Exception as e:
 	exit()
 
 if platform.system() != "Linux":
-	print(vermelho + "Este Utilitario não foi feito para funcionar em Linux!" + fim)
+	print(vermelho + "Este Utilitario foi feito para funcionar somente em Linux!" + fim)
 	sys.exit(2)
 else:
 	subprocess.call("clear", shell=True)
