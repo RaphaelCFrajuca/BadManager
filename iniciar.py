@@ -51,6 +51,7 @@ def menuscript():
 	print(amarelo + "[6] Backup de todos usuarios do sistema (ROOT)" + fim)
 	print(amarelo + "[7] Restaurar todos os usuarios do sistema apartir do backup anterior (ROOT)" + fim)
 	print(amarelo + "[8] Configurar SQUID3 (ROOT)" + fim)
+	print(amarelo + "[9] Verificar informações do sistema (ROOT)" + fim)
 	try:
 		opcao = int(input(azul + "Insira sua opção: " + fim))
 	except KeyboardInterrupt:
@@ -81,6 +82,8 @@ def menuscript():
 	elif opcao == 8:
 		subprocess.call("sudo curl -sL https://github.com/BadGuy552/scripts/raw/master/squid3-install | sudo bash", shell=True)
 		menuscript()
+	elif opcao == 9:
+		subprocess.call("sudo bash /etc/BadManager/system/system.sh", shell=True)
 
 menuscript()
 
