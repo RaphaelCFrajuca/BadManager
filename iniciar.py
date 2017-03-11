@@ -18,14 +18,13 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.1"
+versao="1.0.2"
 try:
 	import os
 	import platform
 	import sys
 	import subprocess
 	sys.path.insert(0, "/etc/BadManager/")
-	sys.setdefaultencoding('utf-8')
 	from criarusuario import criarusuario
 	from deletarusuario import deletarusuario
 	from limite import limite
