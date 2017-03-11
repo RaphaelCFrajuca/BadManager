@@ -25,6 +25,7 @@ try:
 	import sys
 	import subprocess
 	sys.path.insert(0, "/etc/BadManager/")
+	sys.setdefaultencoding('utf-8')
 	from criarusuario import criarusuario
 	from deletarusuario import deletarusuario
 	from limite import limite
