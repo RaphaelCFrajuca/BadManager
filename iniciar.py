@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.2"
+versao="1.0.5"
 try:
 	import os
 	import platform
@@ -29,6 +29,7 @@ try:
 	from deletarusuario import deletarusuario
 	from limite import limite
 	from backupusuario import backupusuario
+	from debbackup import deb
 except Exception as e:
 	print(vermelho + "Erro ao Importar os Modulos!" + fim)
 	print(str(e))
@@ -52,6 +53,9 @@ def menuscript():
 	print(amarelo + "[7] Restaurar todos os usuarios do sistema apartir do backup anterior (ROOT)" + fim)
 	print(amarelo + "[8] Configurar SQUID3 (ROOT)" + fim)
 	print(amarelo + "[9] Verificar informações do sistema (ROOT)" + fim)
+	print(amarelo + "[10] Fazer backup dos pacotes ja instalados no sistema (ROOT)" + fim)
+	print(amarelo + "[11] Restaurar backup de pacotes ja instalados no sistema (ROOT)" + fim)
+	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = int(input(azul + "Insira sua opção: " + fim))
 	except KeyboardInterrupt:
@@ -84,6 +88,12 @@ def menuscript():
 		menuscript()
 	elif opcao == 9:
 		subprocess.call("sudo bash /etc/BadManager/system/system.sh", shell=True)
+	elif opcao == 10:
+		deb.backup()
+		menuscript()
+	elif opcao == 11:
+		deb.restaurar()
+		menuscript()
 
 menuscript()
 
