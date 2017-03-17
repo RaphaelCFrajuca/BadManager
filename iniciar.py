@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.5"
+versao="1.0.7"
 try:
 	import os
 	import platform
@@ -30,6 +30,7 @@ try:
 	from limite import limite
 	from backupusuario import backupusuario
 	from debbackup import deb
+	from servidor import configurar
 except Exception as e:
 	print(vermelho + "Erro ao Importar os Modulos!" + fim)
 	print(str(e))
@@ -43,7 +44,6 @@ else:
 	print(menu + "		 BADMANAGER	" + versao + "	 " + fim)
 
 def menuscript():
-	print(cyan + "		Opções:" + fim)
 	print(amarelo + "[1] Criar Usuario (ROOT)" + fim)
 	print(amarelo + "[2] Deletar Usuario (ROOT)" + fim)
 	print(amarelo + "[3] Adicionar um usuario ao Limite de Logins (ROOT)" + fim)
@@ -55,6 +55,8 @@ def menuscript():
 	print(amarelo + "[9] Verificar informações do sistema (ROOT)" + fim)
 	print(amarelo + "[10] Fazer backup dos pacotes ja instalados no sistema (ROOT)" + fim)
 	print(amarelo + "[11] Restaurar backup de pacotes ja instalados no sistema (ROOT)" + fim)
+	print(amarelo + "[12] Configurar esta maquina para ser usada como servidor remoto" + fim)
+	print(amarelo + "[13] Conectar a um servidor remoto" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = int(input(azul + "Insira sua opção: " + fim))
@@ -94,6 +96,11 @@ def menuscript():
 	elif opcao == 11:
 		deb.restaurar()
 		menuscript()
-
+	elif opcao == 12:
+		configurar.configurar()
+		menuscript()
+	elif opcao == 13:
+		configurar.conectar()
+		menuscript()
 menuscript()
 
