@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.7"
+versao="1.0.8"
 try:
 	import os
 	import platform
@@ -57,6 +57,7 @@ def menuscript():
 	print(amarelo + "[11] Restaurar backup de pacotes ja instalados no sistema (ROOT)" + fim)
 	print(amarelo + "[12] Configurar esta maquina para ser usada como servidor remoto" + fim)
 	print(amarelo + "[13] Conectar a um servidor remoto" + fim)
+	print(amarelo + "[14] Configurar SQUID (ROOT)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = int(input(azul + "Insira sua opção: " + fim))
@@ -102,5 +103,12 @@ def menuscript():
 	elif opcao == 13:
 		configurar.conectar()
 		menuscript()
+	elif opcao == 14:
+		subprocess.call("sudo bash /etc/BadManager/squid/squid.sh", shell=True)
+		menuscript()
+	else:
+		print(vermelho + "Digite uma opção valida!" + fim)
+		menuscript()
+
 menuscript()
 
