@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao="1.0.8"
+versao=menu + "1.1.0" + fim
 try:
 	import os
 	import platform
@@ -41,7 +41,7 @@ if platform.system() != "Linux":
 	sys.exit(2)
 else:
 	subprocess.call("clear", shell=True)
-	print(menu + "		 BADMANAGER	" + versao + "	 " + fim)
+	print(menu + "		 BADMANAGER {} 		 ".format(versao) + fim)
 
 def menuscript():
 	print(amarelo + "[1] Criar Usuario (ROOT)" + fim)
@@ -52,15 +52,23 @@ def menuscript():
 	print(amarelo + "[6] Backup de todos usuarios do sistema (ROOT)" + fim)
 	print(amarelo + "[7] Restaurar todos os usuarios do sistema apartir do backup anterior (ROOT)" + fim)
 	print(amarelo + "[8] Configurar SQUID3 (ROOT)" + fim)
-	print(amarelo + "[9] Verificar informações do sistema (ROOT)" + fim)
-	print(amarelo + "[10] Fazer backup dos pacotes ja instalados no sistema (ROOT)" + fim)
-	print(amarelo + "[11] Restaurar backup de pacotes ja instalados no sistema (ROOT)" + fim)
-	print(amarelo + "[12] Configurar esta maquina para ser usada como servidor remoto" + fim)
-	print(amarelo + "[13] Conectar a um servidor remoto" + fim)
-	print(amarelo + "[14] Configurar SQUID (ROOT)" + fim)
+	print(amarelo + "[9] Configurar SQUID (ROOT)" + fim)
+	print(amarelo + "[10] Verificar informações do sistema (ROOT)" + fim)
+	print(amarelo + "[11] Fazer backup dos pacotes ja instalados no sistema (ROOT)" + fim)
+	print(amarelo + "[12] Restaurar backup de pacotes ja instalados no sistema (ROOT)" + fim)
+	print(amarelo + "[13] Configurar esta maquina para ser usada como servidor remoto" + fim)
+	print(amarelo + "[14] Conectar a um servidor remoto" + fim)
+	print(amarelo + "[15] Mudar o limite de logins de um usuario (ROOT)" + fim)
+	print(amarelo + "[16] Monitor de usuarios (ROOT)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
-		opcao = int(input(azul + "Insira sua opção: " + fim))
+		opcao = input(azul + "Insira sua opção: " + fim)
+		if opcao == '':
+			print(vermelho + "Digite uma opção!" + fim)
+			menuscript()
+		else:
+			opcao = int(opcao)
+
 	except KeyboardInterrupt:
 		print(cyanClaro + "\nBye :P" + fim)
 		exit(1)
@@ -90,21 +98,27 @@ def menuscript():
 		subprocess.call("sudo curl -sL https://github.com/BadGuy552/scripts/raw/master/squid3-install | sudo bash", shell=True)
 		menuscript()
 	elif opcao == 9:
-		subprocess.call("sudo bash /etc/BadManager/system/system.sh", shell=True)
+		subprocess.call("sudo bash /etc/BadManager/squid/squid.sh", shell=True)
 	elif opcao == 10:
-		deb.backup()
+		subprocess.call("sudo bash /etc/BadManager/system/system.sh", shell=True)
 		menuscript()
 	elif opcao == 11:
-		deb.restaurar()
+		deb.backup()
 		menuscript()
 	elif opcao == 12:
-		configurar.configurar()
+		deb.restaurar()
 		menuscript()
 	elif opcao == 13:
-		configurar.conectar()
+		configurar.configurar()
 		menuscript()
 	elif opcao == 14:
-		subprocess.call("sudo bash /etc/BadManager/squid/squid.sh", shell=True)
+		configurar.conectar()
+		menuscript()
+	elif opcao == 15:
+		subprocess.call("sudo bash /etc/BadManager/limite/mudlimite.sh", shell=True)
+		menuscript()
+	elif opcao == 16:
+		subprocess.call("sudo bash /etc/BadManager/limite/monitor.sh", shell=True)
 		menuscript()
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)

@@ -32,7 +32,7 @@ if [ "$1" = "--output" ]
 then
 sudo apt-get install python3 curl wget bc sudo bash git screen -y 
 else
-sudo apt-get install python3 curl wget bc sudo bash git locale screen -y 1>/dev/null 2>/dev/null
+sudo apt-get install python3 curl wget bc sudo bash git screen -y 1>/dev/null 2>/dev/null
 fi
 
 echo -e "$cyanClaro
