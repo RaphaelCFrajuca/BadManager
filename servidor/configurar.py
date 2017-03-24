@@ -64,7 +64,7 @@ def conectar():
 	ip = input(cyanClaro + "Digite o IP do servidor no qual quer se conectar: " + fim)
 	print(amarelo + "Conectando..." + fim)
 	try:
-		conexao = socket.socket
+		conexao = socket.socket()
 		porta = 552
 		conexao.connect((ip, porta))
 		print(azul + "Conectado!" + fim)
