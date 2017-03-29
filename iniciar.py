@@ -95,7 +95,7 @@ def menuscript():
 		restaurarok = backupusuario.restaurarusuarios()
 		menuscript()
 	elif opcao == 8:
-		subprocess.call("sudo curl -sL https://github.com/BadGuy552/scripts/raw/master/squid3-install | sudo bash", shell=True)
+		subprocess.call("sudo wget -q https://github.com/BadGuy552/scripts/raw/master/squid3-install && sudo bash squid3-install && rm -f squid3-install", shell=True)
 		menuscript()
 	elif opcao == 9:
 		subprocess.call("sudo bash /etc/BadManager/squid/squid.sh", shell=True)
