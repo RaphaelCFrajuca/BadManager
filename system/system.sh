@@ -25,6 +25,11 @@ cpus=$(cat /proc/cpuinfo | grep processor | wc -l)
 voltageprocessor=$(sudo dmidecode -t processor | grep Voltage | awk '{print $2" "$3}')
 familyprocessor=$(sudo dmidecode -t processor | grep Family: | awk '{print $2" "$3}')
 processortype=$(sudo dmidecode -t processor | grep Type: | awk '{print $2" "$3}')
+diskdevice=$(df -h | grep -w "/" | awk '{print $1}')
+disktotal=$(df -h | grep -w "/" | awk '{print $2}')
+diskusage=$(df -h | grep -w "/" | awk '{print $3}')
+diskfree=$(df -h | grep -w "/" | awk '{print $4" "$5}')
+
 
 echo "Board Manufacturer: $boardmanufacture"
 echo "Product Name: $productname"
@@ -76,6 +81,10 @@ do
 i=$(($i + 1))
 echo Slot "$i": "$value"
 done < /tmp/raminfo
+echo "Disk Device: $diskdevice"
+echo "Disk Total: $disktotal"
+echo "Disk Using: $diskusage"
+echo "Disk Free: $diskfree"
 
 echo "Uptime: $(uptime)"
 echo "Hostname: $(hostname)"
