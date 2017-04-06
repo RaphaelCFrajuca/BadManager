@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao=menu + "1.1.0" + fim
+versao=menu + "1.1.1" + fim
 try:
 	import os
 	import platform
@@ -31,6 +31,7 @@ try:
 	from backupusuario import backupusuario
 	from debbackup import deb
 	from servidor import configurar
+	from criarusuariokey import criarusuariokey
 except Exception as e:
 	print(vermelho + "Erro ao Importar os Modulos!" + fim)
 	print(str(e))
@@ -60,6 +61,7 @@ def menuscript():
 	print(amarelo + "[14] Conectar a um servidor remoto" + fim)
 	print(amarelo + "[15] Mudar o limite de logins de um usuario (ROOT)" + fim)
 	print(amarelo + "[16] Monitor de usuarios (ROOT)" + fim)
+	print(amarelo + "[17] Criar Usuario com Chave Publica (ROOT)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = input(azul + "Insira sua opção: " + fim)
@@ -119,6 +121,9 @@ def menuscript():
 		menuscript()
 	elif opcao == 16:
 		subprocess.call("sudo bash /etc/BadManager/limite/monitor.sh", shell=True)
+		menuscript()
+	elif opcao == 17:
+		criarusuariokey.criarusuariokey()
 		menuscript()
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)
