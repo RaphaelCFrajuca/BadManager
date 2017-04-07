@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao=menu + "1.1.1" + fim
+versao=menu + "1.1.2" + fim
 try:
 	import os
 	import platform
@@ -62,6 +62,7 @@ def menuscript():
 	print(amarelo + "[15] Mudar o limite de logins de um usuario (ROOT)" + fim)
 	print(amarelo + "[16] Monitor de usuarios (ROOT)" + fim)
 	print(amarelo + "[17] Criar Usuario com Chave Publica (ROOT)" + fim)
+	print(amarelo + "[18] Adicionar um Banner SSH (ROOT)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = input(azul + "Insira sua opção: " + fim)
@@ -124,6 +125,9 @@ def menuscript():
 		menuscript()
 	elif opcao == 17:
 		criarusuariokey.criarusuariokey()
+		menuscript()
+	elif opcao == 18:
+		subprocess.call("sudo bash /etc/BadManager/bannerssh/banner.sh", shell=True)
 		menuscript()
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)
