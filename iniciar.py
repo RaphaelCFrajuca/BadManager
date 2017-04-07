@@ -63,6 +63,7 @@ def menuscript():
 	print(amarelo + "[16] Monitor de usuarios (ROOT)" + fim)
 	print(amarelo + "[17] Criar Usuario com Chave Publica (ROOT)" + fim)
 	print(amarelo + "[18] Adicionar um Banner SSH (ROOT)" + fim)
+	print(amarelo + "[19] Firewall iptables pronto costumizado (TORRENT OFF)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = input(azul + "Insira sua opção: " + fim)
@@ -127,7 +128,10 @@ def menuscript():
 		criarusuariokey.criarusuariokey()
 		menuscript()
 	elif opcao == 18:
-		subprocess.call("sudo bash /etc/BadManager/bannerssh/banner.sh", shell=True)
+		subprocess.call("sudo bash /etc/BadManager/bannerssh/bannerssh.sh", shell=True)
+		menuscript()
+	elif opcao == 19:
+		subprocess.call("sudo bash /etc/BadManager/firewall/firewall.sh", shell=True)
 		menuscript()
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)
