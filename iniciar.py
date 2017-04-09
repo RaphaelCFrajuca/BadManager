@@ -64,6 +64,7 @@ def menuscript():
 	print(amarelo + "[17] Criar Usuario com Chave Publica (ROOT)" + fim)
 	print(amarelo + "[18] Adicionar um Banner SSH (ROOT)" + fim)
 	print(amarelo + "[19] Firewall iptables pronto costumizado (TORRENT OFF)" + fim)
+	print(amarelo + "[20] Compilar e configurar badvpn-udpgw" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = input(azul + "Insira sua opção: " + fim)
@@ -132,6 +133,9 @@ def menuscript():
 		menuscript()
 	elif opcao == 19:
 		subprocess.call("sudo bash /etc/BadManager/firewall/firewall.sh", shell=True)
+		menuscript()
+	elif opcao == 20:
+		subprocess.call("sudo bash /etc/BadManager/badvpn/badvpn-configurar.sh", shell=True)
 		menuscript()
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)
