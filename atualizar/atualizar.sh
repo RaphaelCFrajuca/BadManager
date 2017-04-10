@@ -9,7 +9,7 @@ rm -f /bin/iniciar
 git clone https://github.com/BadGuy552/BadManager.git /etc/BadManager
 mv /etc/BadManager/iniciar.py /bin/iniciar
 chmod a+x /bin/iniciar
-echo "Atualizado com Sucesso!"
+echo Atualizado com Sucesso!
 "
 
 nome=$RANDOM.sh
