@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao=menu + "1.1.4" + fim
+versao=menu + "1.1.5" + fim
 try:
 	import os
 	import platform
@@ -65,6 +65,7 @@ def menuscript():
 	print(amarelo + "[18] Adicionar um Banner SSH (ROOT)" + fim)
 	print(amarelo + "[19] Firewall iptables pronto costumizado (TORRENT OFF)" + fim)
 	print(amarelo + "[20] Compilar e configurar badvpn-udpgw" + fim)
+	print(azul + "[000] Atualizar BadManager (ROOT)" + fim)
 	print(vermelho + "[Ctrl+C] Sair" + fim)
 	try:
 		opcao = input(azul + "Insira sua opção: " + fim)
@@ -137,6 +138,8 @@ def menuscript():
 	elif opcao == 20:
 		subprocess.call("sudo bash /etc/BadManager/badvpn/badvpn-configurar.sh", shell=True)
 		menuscript()
+	elif opcao == 000:
+		subprocess.call("sudo bash /etc/BadManager/atualizar/atualizar.sh", shell=True)
 	else:
 		print(vermelho + "Digite uma opção valida!" + fim)
 		menuscript()
