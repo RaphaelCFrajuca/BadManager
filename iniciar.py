@@ -18,7 +18,7 @@ purpleClaro="\033[1;35m"
 cyanClaro="\033[1;36m"
 branco="\033[1;37m"
 fim="\033[0m"
-versao=menu + "1.1.3" + fim
+versao=menu + "1.1.4" + fim
 try:
 	import os
 	import platform

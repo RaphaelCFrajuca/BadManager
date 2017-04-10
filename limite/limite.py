@@ -27,9 +27,16 @@ def remlimite():
 	subprocess.call("sudo bash /etc/BadManager/limite/remlimite.sh", shell=True)
 
 def gerlimite():
-	resposta = input(cyan + "Voce deseja iniciar o limitador em sessao screen? (y/n); " + fim)
+	resposta = input(cyan + "Voce deseja iniciar o limitador em sessao screen? (y/n): " + fim)
 	if resposta == "y" or resposta == "Y":
 		try:
+			iniciar = input(cyan + "Você deseja que o limitador inicie automaticamente com o sistema? (y/n): " + fim)
+			if iniciar == "y" or iniciar == "Y":
+				subprocess.call("sudo echo '#!/bin/bash' > /etc/init.d/limite", shell=True)
+				subprocess.call("sudo echo 'bash /etc/BadManager/limite/limite.sh &' >> /etc/init.d/limite", shell=True)
+				subprocess.call("sudo chmod a+x /etc/init.d/limite", shell=True)
+				subprocess.call("sudo chmod a+x /etc/BadManager/limite/limite.sh", shell=True)
+				subprocess.call("sudo update-rc.d limite defaults", shell=True)
 			subprocess.call("sudo screen bash /etc/BadManager/limite/limite.sh", shell=True)
 		except KeyboardInterrupt:
 			print(azul + "Bye :P" + fim)
