@@ -44,8 +44,7 @@ def criarusuariokey():
 		sys.path.insert(0, "/etc/BadManager/")
 		from limite import limite
 		limite.deflimite()
-		ip = subprocess.call("echo $(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')", shell=True)
-		print(cyan + "Ip: " + str(ip) + fim)
+		ip = subprocess.call("echo Ip: $(ip addr | grep '/19' | awk '{print $4}')", shell=True)
 		print(cyan + "Usuario " + usuario + " Criado com sucesso!" + fim)
 		print(cyan + "Dados: " + fim)
 		print(cyan + "Usuario: " + usuario + fim)
@@ -55,8 +54,7 @@ def criarusuariokey():
 		return True
 	else:
 		subprocess.call("sudo useradd -M -N -s /bin/false " + usuario, shell=True)
-		ip = subprocess.call("echo $(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')", shell=True)
-		print(cyan + "Ip: " + str(ip) + fim)
+		ip = subprocess.call("echo Ip: $(ip addr | grep '/19' | awk '{print $4}')", shell=True)
 		print(cyan + "Usuario " + usuario + " Criado com sucesso!" + fim)
 		print(cyan + "Dados:\n" + fim)
 		print(cyan + "Usuario: " + usuario + fim)
