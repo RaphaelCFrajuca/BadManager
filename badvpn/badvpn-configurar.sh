@@ -16,49 +16,63 @@ fi
 
 echo "Instalando Dependencias...."
 
-apt install python-nss 1>/dev/null 2>/dev/null && echo "python-nss Instalado!" || python-nss=false
-if [ "$python-nss" = false ]
+apt install libssl-dev -y 1>/dev/null 2>/dev/null && echo "libssl-dev Instalado!" || libssldev=false
+if [ "$libssldev" = false ]
+then
+echo "Erro na instalação do libssl-dev, Abortando..."
+exit 1
+fi
+
+apt install pkg-config -y 1>/dev/null 2>/dev/null && echo "pkg-config Instalado!" || pkgconfig=false
+if [ "$pkgconfig" = false ]
+then
+echo "Erro na instalação do pkg-config, Abortando..."
+exit 1
+fi
+
+apt install python-nss -y 1>/dev/null 2>/dev/null && echo "python-nss Instalado!" || pythonnss=false
+if [ "$pythonnss" = false ]
 then
 echo "Erro na instalação do python-nss, Abortando..."
 exit 1
 fi
 
-apt install libnspr4-dev 1>/dev/null 2>/dev/null && echo "libnspr4-dev Instalado!" || libnspr4dev=false
-if [ "$libnspr4-dev" = false ]
+apt install libnspr4-dev -y 1>/dev/null 2>/dev/null && echo "libnspr4-dev Instalado!" || libnspr4dev=false
+if [ "$libnspr4dev" = false ]
 then
 echo "Erro na instalação do libnspr4-dev, Abortando..."
 exit 1
 fi
 
-apt install libnss3-dev 1>/dev/null 2>/dev/null && echo "libnss3-dev Instalado!" || libnss3dev=false
+apt install libnss3-dev -y 1>/dev/null 2>/dev/null && echo "libnss3-dev Instalado!" || libnss3dev=false
 if [ "$libnss3dev" = false ]
 then
 echo "Erro na instalação do libnss3-dev, Abortando..."
 exit 1
 fi
 
-apt install build-essential 1>/dev/null 2>/dev/null && echo "build-essential Instalado!" || buildessential=false
+apt install build-essential -y 1>/dev/null 2>/dev/null && echo "build-essential Instalado!" || buildessential=false
 if [ "$buildessential" = false ]
 then
 echo "Erro na instalação do build-essential, Abortando..."
 exit 1
 fi
 
-apt install cmake 1>/dev/null 2>/dev/null && echo "cmake Instalado!" || cmake=false
+apt install cmake 1>/dev/null -y 2>/dev/null && echo "cmake Instalado!" || cmake=false
 if [ "$cmake" = false ]
 then
 echo "Erro na instalação do cmake, Abortando..."
 exit 1
 fi
 
-apt install make 1>/dev/null 2>/dev/null && echo "make Instalado!" || make=false
+apt install make 1>/dev/null -y 2>/dev/null && echo "make Instalado!" || make=false
 if [ "$make" = false ]
 then
 echo "Erro na instalação do make, Abortando..."
 exit 1
 fi
 
-apt install git 1>/dev/null 2>/dev/null && echo "git Instalado!" || git=false
+apt install git 1>/dev/null -y 2>/dev/null && echo "git Instalado!" || git=false
 if [ "$git" = false ]
 then
 echo "Erro na instalação do git, Abortando..."
@@ -66,7 +80,7 @@ exit 1
 fi
 
 echo "Fazendo Download do badvpn Atualizado..."
-BADVPNSOURCE=/etc/BadManager/badvpn/source/
+BADVPNSOURCE=/etc/BadManager/badvpn/source
 rm -rf $BADVPNSOURCE 1>/dev/null 2>/dev/null
 mkdir $BADVPNSOURCE
 git clone https://github.com/ambrop72/badvpn.git $BADVPNSOURCE 1>/dev/null 2>/dev/null && echo "Download Terminado!" || download=false
@@ -92,19 +106,29 @@ echo "Erro ao Compilar, Abortando..."
 exit 1
 fi
 
+echo "Configurando badvpn para inicializar junto com o sistema..."
+mv /etc/BadManager/badvpn/badvpn /etc/init.d/
+chmod a+x /etc/init.d/badvpn
+touch /etc/BadManager/badvpn/...
+update-rc.d badvpn defaults
+
 echo "Iniciando badvpn..."
 
-bash /etc/BadManager/badvpn/badvpn.sh && echo "badvpn Iniciado com Sucesso!" || badvpn=false
+sudo bash /etc/init.d/badvpn && echo "badvpn Iniciado com Sucesso!" || badvpn=false
 if [ "$badvpn" = false ]
 then
 echo "Erro ao iniciar o badvpn, Abortando..."
 exit 1
 fi
 
-echo "Configurando badvpn para inicializar junto com o sistema..."
-mv /etc/BadManager/badvpn/badvpn /etc/init.d/
-chmod a+x /etc/init.d/badvpn
-touch /etc/BadManager/badvpn/...
 
 echo "Configuração Finalizada!"
 exit 0
+
+echo -e "\n\n
+badvpn Instalado com sucesso, caso ele não\n
+inicie automaticamente, favor reiniciar seu \n
+sistema, que o badvpn ira iniciar junto com o \n
+sistema, sem a necessidade de terque iniciar \n
+ele manualmente"
+sleep 2
